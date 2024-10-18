@@ -77,16 +77,13 @@ describe('Create User', () => {
   //   cy.get('.swal2-confirm').click()
   // })
   it('Search The User', () => {
-    cy.visit('http://52.6.44.195:3000/users/sign_in')
-    cy.get('#login-email').type('superadmin@example.com')
-    cy.get('#password').type('123456')
-    cy.get('.login-submit').click()
+    cy.login('superadmin@example.com', '123456')
     cy.get('div.sidebar a').eq(0)
       .should('be.visible')
       .and('have.attr', 'href');
     cy.get('div.sidebar a').eq(0).click();
     cy.scrollTo('0, 500');
     cy.get('#dt-search-0').type('user_9up0yjxvq@example.com')
-    cy.get('tr > :nth-child(3) > .d-flex').should('contain','user_9up0yjxvq@example.com')
+    cy.get('tr > :nth-child(3) > .d-flex').should('contain', 'user_9up0yjxvq@example.com')
   })
 })
